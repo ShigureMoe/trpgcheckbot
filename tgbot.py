@@ -36,6 +36,10 @@ def roll(update: Update, context: CallbackContext) -> None:
     """Roll dice."""
     try:
         command = update.message.text.split("/r ")[1]
+    except:
+        update.message.reply_text('指令格式错误')
+        return None
+    try:
         num = int(command.split("d")[0])
         rrange = command.split("d")[1]
         if re.search("\+", rrange):
@@ -57,7 +61,7 @@ def roll(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
-    updater = Updater("5086323544:AAFCYoTsVhGrKBM_q5APThUsCV0_UpZz-zI")
+    updater = Updater("TOKEN")
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
