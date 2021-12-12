@@ -48,10 +48,13 @@ def roll(update: Update, context: CallbackContext) -> None:
         else:
             range_num = int(rrange)
             ext_num = 0
-        result = ext_num
-        for i in range(num):
-            result += random.randint(1, range_num)
-        update.message.reply_text(command + ": " + str(result))
+        if num >= 1000 or range_num >= 1000:
+            update.message.reply_text('数字过大')
+        else:
+            result = ext_num
+            for i in range(num):
+                result += random.randint(1, range_num)
+            update.message.reply_text(command + ": " + str(result))
     except ValueError:
         update.message.reply_text('表达式错误')
     except:
