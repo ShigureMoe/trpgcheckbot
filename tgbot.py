@@ -34,8 +34,8 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 def roll(update: Update, context: CallbackContext) -> None:
     """Roll dice."""
-    command = update.message.text.split("/r ")[1]
     try:
+        command = update.message.text.split("/r ")[1]
         num = int(command.split("d")[0])
         rrange = command.split("d")[1]
         if re.search("\+", rrange):
@@ -49,17 +49,15 @@ def roll(update: Update, context: CallbackContext) -> None:
             result += random.randint(1, range_num)
         update.message.reply_text(command + ": " + str(result))
     except ValueError:
-        logger.error(command)
         update.message.reply_text('表达式错误')
     except:
-        logger.error(command)
         update.message.reply_text('内部错误')
 
 
 def main() -> None:
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
-    updater = Updater("TOKEN")
+    updater = Updater("5086323544:AAFCYoTsVhGrKBM_q5APThUsCV0_UpZz-zI")
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
